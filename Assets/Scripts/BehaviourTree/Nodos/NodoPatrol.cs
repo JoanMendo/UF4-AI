@@ -10,21 +10,19 @@ public class NodoPatrol : NodoBase
     }
     public override EstadosNodo ExecuteNode()
     {
-        if (blackboard.agent == null || blackboard.WaypointsList == null)
-        {
-            return EstadosNodo.NodoRoñoso;
-        }
 
-        else if (!blackboard.agent.hasPath)
+
+        if (!blackboard.agent.hasPath)
         {
             blackboard.agent.SetDestination(blackboard.WaypointsList[(int)blackboard.lastWaypointIndex].transform.position);
             return EstadosNodo.NodoCorrecto;
         }
 
-        else if (!blackboard.agent.pathPending && blackboard.agent.remainingDistance < 0.5f)
+        else if (blackboard.arrivedToDestination)
         {
             blackboard.lastWaypointIndex = (blackboard.lastWaypointIndex + 1) % blackboard.WaypointsList.Count;
             blackboard.agent.SetDestination(blackboard.WaypointsList[(int)blackboard.lastWaypointIndex].transform.position);
+            blackboard.arrivedToDestination = false;
             return EstadosNodo.NodoCorrecto;
         }
         return EstadosNodo.NodoEjecutandose;

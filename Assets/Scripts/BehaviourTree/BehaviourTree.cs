@@ -9,7 +9,7 @@ public class BehaviourTree : MonoBehaviour
     {
         if(nodoRaiz != null)
         {
-            nodoRaiz.Ejecutar();
+            nodoRaiz.ExecuteNode();
         }
     }
 }

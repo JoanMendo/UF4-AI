@@ -11,6 +11,8 @@ public class Blackboard : MonoBehaviour
     public GameObject startingWaypoints;
     public GameObject player;
 
+    public bool playerInSight = false;
+    public bool arrivedToDestination = false;
     public float lastWaypointIndex = 0;
     public Transform lastPosition;
     public GameObject self;
@@ -19,6 +21,7 @@ public class Blackboard : MonoBehaviour
 
     private void Awake()
     {
+        lastPosition = transform;
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");

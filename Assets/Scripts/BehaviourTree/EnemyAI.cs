@@ -15,18 +15,24 @@ public class EnemyAI : MonoBehaviour
     {
         nodoBase = new NodoSelector(new List<NodoBase>
         {
-            new NodoSecuencial(new List<NodoBase>
+            new NodoSelector(new List<NodoBase>
             {
-                new NodoPatrol(blackboard)
+                new NodoChase(blackboard),
+                new NodoHuir(blackboard)
 
             }),
+            new NodoSecuencial(new List<NodoBase>
+            {
+                new NodoValidateStart(blackboard),
+                new NodoPatrol(blackboard)
+
+            })
            
         });
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        nodoBase.ExecuteNode();
     }
+
 }
