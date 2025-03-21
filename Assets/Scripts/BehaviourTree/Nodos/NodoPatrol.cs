@@ -11,20 +11,14 @@ public class NodoPatrol : NodoBase
     public override EstadosNodo ExecuteNode()
     {
 
-
-        if (!blackboard.agent.hasPath)
+        if (blackboard.arrivedToDestination)
         {
-            blackboard.agent.SetDestination(blackboard.WaypointsList[(int)blackboard.lastWaypointIndex].transform.position);
-            return EstadosNodo.NodoCorrecto;
-        }
-
-        else if (blackboard.arrivedToDestination)
-        {
+            Debug.Log("Arrived to destination");
             blackboard.lastWaypointIndex = (blackboard.lastWaypointIndex + 1) % blackboard.WaypointsList.Count;
             blackboard.agent.SetDestination(blackboard.WaypointsList[(int)blackboard.lastWaypointIndex].transform.position);
             blackboard.arrivedToDestination = false;
             return EstadosNodo.NodoCorrecto;
-        }
+        }      
         return EstadosNodo.NodoEjecutandose;
 
     }

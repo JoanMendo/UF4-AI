@@ -12,7 +12,6 @@ internal partial class SuffleWaypointsAction : Action
     [SerializeReference] public BlackboardVariable<List<GameObject>> Waypoints;
 
 
-
     protected override Status OnStart()
     {
         if (Waypoints.Value == null || Waypoints.Value.Count == 0)
@@ -28,11 +27,6 @@ internal partial class SuffleWaypointsAction : Action
     protected override Status OnUpdate()
     {
         return Status.Success;
-    }
-
-    protected override void OnEnd()
-    {
-        
     }
 
     public void ShuffleWaypoints()

@@ -14,14 +14,14 @@ public class Blackboard : MonoBehaviour
     public bool playerInSight = false;
     public bool arrivedToDestination = false;
     public float lastWaypointIndex = 0;
-    public Transform lastPosition;
+    public GameObject lastPosition;
     public GameObject self;
     public List<GameObject> WaypointsList = new List<GameObject>();
     public NavMeshAgent agent;
 
     private void Awake()
     {
-        lastPosition = transform;
+        lastPosition = self;
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");

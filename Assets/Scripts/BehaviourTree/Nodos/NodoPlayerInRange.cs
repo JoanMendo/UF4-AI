@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NodoPlayerInRange : NodoBase
 {
@@ -12,15 +13,16 @@ public class NodoPlayerInRange : NodoBase
     {
 
 
-        
-        if (blackboard.playerInSight)
+
+        NavMeshHit hit;
+
+        if (NavMesh.SamplePosition(blackboard.player.transform.position, out hit, 1.0f, NavMesh.AllAreas))
         {
-            blackboard.agent.SetDestination(blackboard.player.transform.position);
-            blackboard.arrivedToDestination = false;
+            blackboard.playerInSight = true;
             return EstadosNodo.NodoCorrecto;
         }
 
-        return EstadosNodo.NodoEjecutandose;
+        return EstadosNodo.NodoRoñoso;
     }
 }
 

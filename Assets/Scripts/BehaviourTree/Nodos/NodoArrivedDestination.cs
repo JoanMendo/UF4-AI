@@ -11,7 +11,6 @@ public class NodoArrivedDestination : NodoBase
     public override EstadosNodo ExecuteNode()
     {
 
-
         if (!blackboard.agent.pathPending && blackboard.agent.remainingDistance < 0.5f)
         {
             blackboard.arrivedToDestination = true;

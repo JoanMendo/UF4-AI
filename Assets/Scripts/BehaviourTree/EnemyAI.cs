@@ -13,22 +13,25 @@ public class EnemyAI : MonoBehaviour
     }
     void Start()
     {
-        nodoBase = new NodoSelector(new List<NodoBase>
+        nodoBase = new NodoSecuencial(new List<NodoBase> 
         {
+            new NodoValidateStart(blackboard),
             new NodoSelector(new List<NodoBase>
             {
-                new NodoChase(blackboard),
-                new NodoHuir(blackboard)
+                new NodoSelector(new List<NodoBase>
+                {
+                    new NodoChase(blackboard),
+                    new NodoHuir(blackboard)
 
-            }),
-            new NodoSecuencial(new List<NodoBase>
-            {
-                new NodoValidateStart(blackboard),
-                new NodoPatrol(blackboard)
+                }),
+                new NodoSecuencial(new List<NodoBase>
+                {
+                    //new NodoArrivedDestination(blackboard),
+                    new NodoPatrol(blackboard)
 
-            })
-           
-        });
+                })
+
+        })});
     }
     void Update()
     {
